@@ -4,8 +4,8 @@ import sys
 import array
 from .grid import Grid
 
-POSINF = sys.maxint
-NEGINF = None
+POSINF = sys.maxsize
+NEGINF = -POSINF
 
 class AscIngestor(object):
     """
@@ -38,12 +38,12 @@ class AscIngestor(object):
         array_height = (self.top - self.bottom) / (self.cellsize * float(self.divisor))
         if int(array_height) != array_height or int(array_width) != array_width:
             raise ValueError("Non-exact divisor!")
-        print "Bounds: (%s, %s) to (%s, %s) cellsize %s divisor %s" % (self.left, self.bottom, self.right, self.top, self.cellsize, self.divisor)
-        print "Creating array of size %.1f MB" % (array_width * array_height * (4/(1024.0**2)))
+        print("Bounds: ({}, {}) to ({}, {}) cellsize {} divisor {}".format(self.left, self.bottom, self.right, self.top, self.cellsize, self.divisor))
+        print("Creating array of size {:.1f} MB".format(array_width * array_height * (4/(1024.0**2))))
         self.grid = Grid(array_width, array_height, self.nodata_height)
         # Load files
         for file in self.files:
-            print "Loading %s" % file
+            print("Loading {}".format(file))
             self.load_file(file)
 
     def array_index(self, x, y, floor=False):
@@ -80,6 +80,16 @@ class AscIngestor(object):
             yl = data['yllcorner']
             xh = xl + (cellsize * data['ncols'])
             yh = yl + (cellsize * data['nrows'])
+            # with open(r'C:\Users\Scott\Downloads\a.txt', "w") as ff:
+            #     for key, val in data.items():
+            #         ff.write(key)
+            #         ff.write(' ')
+            #         ff.write('{}'.format(val))
+            #         ff.write('\n')
+                # ff.write('{}\n'.format(minx))
+                # ff.write('{}\n'.format(maxx))
+                # ff.write('{}\n'.format(miny))
+                # ff.write('{}\n'.format(maxy))
             minx = min(minx, xl)
             maxx = max(maxx, xh)
             miny = min(miny, yl)

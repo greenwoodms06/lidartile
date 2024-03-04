@@ -12,16 +12,16 @@ class Grid(object):
     def __init__(self, width, height, initial_value=0):
         self.width = int(width)
         self.height = int(height)
-        self.data = array.array(b"f", (initial_value for i in xrange(self.width * self.height)))
+        self.data = array.array("f", (initial_value for i in range(self.width * self.height)))
 
     def __getitem__(self, key):
-        if isinstance(key, (int, long)):
+        if isinstance(key, (int, float)):
             return self.data[key]
         else:
             return self.data[key[0] + (key[1] * self.width)]
 
     def __setitem__(self, key, val):
-        if isinstance(key, (int, long)):
+        if isinstance(key, (int, float)):
             self.data[key] = val
         else:
             self.data[key[0] + (key[1] * self.width)] = val
@@ -82,7 +82,7 @@ class Grid(object):
         """
         Returns min, max tuple of height values in this grid
         """
-        lowest = sys.maxint
+        lowest = sys.maxsize
         highest = 0
         for value in self.data:
             lowest = min(lowest, value)
