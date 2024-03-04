@@ -80,16 +80,6 @@ class AscIngestor(object):
             yl = data['yllcorner']
             xh = xl + (cellsize * data['ncols'])
             yh = yl + (cellsize * data['nrows'])
-            # with open(r'C:\Users\Scott\Downloads\a.txt', "w") as ff:
-            #     for key, val in data.items():
-            #         ff.write(key)
-            #         ff.write(' ')
-            #         ff.write('{}'.format(val))
-            #         ff.write('\n')
-                # ff.write('{}\n'.format(minx))
-                # ff.write('{}\n'.format(maxx))
-                # ff.write('{}\n'.format(miny))
-                # ff.write('{}\n'.format(maxy))
             minx = min(minx, xl)
             maxx = max(maxx, xh)
             miny = min(miny, yl)
