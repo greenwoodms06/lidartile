@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 
 rem This file parallelizes the running of rthe command line function
-rem Example input: python -m lidartile.cli -d 2 -f 0.5 -b 5 -c 2 -z 1 -s 0 -m 2 -l 0.2 /data/FILE.laz -o /temp/outputfile.stl
+rem Example input: python -m lidartile.cli -d 2 -f 0.5 -b 5 -c 2 -z 1 -s 0 -m 2 -l 0.2 data/FILE.asc -o temp/outputfile.stl
 
 rem Prompt the user to enter the maximum number of processes
 set /p max_processes="Enter the maximum number of processes: "
